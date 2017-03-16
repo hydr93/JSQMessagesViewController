@@ -32,6 +32,8 @@
 
 - (void)jsq_configureCollectionView;
 
+@property (nonatomic, copy) void (^reloadDataCompletionBlock)(void);
+
 @end
 
 
@@ -180,6 +182,24 @@
                     performAction:action
                forItemAtIndexPath:indexPath
                        withSender:sender];
+}
+
+# pragma mark - Reload Data with Completion Block
+
+- (void)reloadDataWithCompletion:(void (^)(void))completionBlock
+{
+    self.reloadDataCompletionBlock = completionBlock;
+    [super reloadData];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.reloadDataCompletionBlock) {
+        self.reloadDataCompletionBlock();
+        self.reloadDataCompletionBlock = nil;
+    }
 }
 
 @end

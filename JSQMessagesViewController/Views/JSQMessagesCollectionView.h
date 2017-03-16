@@ -98,4 +98,9 @@
  */
 - (JSQMessagesLoadEarlierHeaderView *)dequeueLoadEarlierMessagesViewHeaderForIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ *  Reload Data function with completion block
+ */
+- (void)reloadDataWithCompletion:(void (^)(void))completionBlock;
+
 @end
