@@ -152,11 +152,13 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-
+    
     if ([self.text length] == 0 && self.placeHolder) {
         [self.placeHolderTextColor set];
-
-        [self.placeHolder drawInRect:CGRectInset(rect, 7.0f, 5.0f)
+        
+        rect = CGRectMake(rect.origin.x+13, rect.origin.y+11, rect.size.width-13, rect.size.height-11);
+        
+        [self.placeHolder drawInRect:CGRectInset(rect, 0.0f, 0.0f)
                       withAttributes:[self jsq_placeholderTextAttributes]];
     }
 }
